@@ -17,7 +17,7 @@ of GitHub repos!
 ![Token scopes](readme_assets/token_scopes.png)
 3. Copy it and keep it for the next step. Note: it won't be available after you close the tab.
 
-**Q:** Why do you need a PAT? Couldn't you just use the default GitHub token?
+**Q:** Why do you need a PAT? Can't you just use the default GitHub token?
 
 **A:** We need read/write access to the repo's secrets in order to store the access tokens to Quine's API. Unfortunately, 
    you can't edit repository secrets using the default GitHub token supplied to Actions.
