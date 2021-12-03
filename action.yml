@@ -1,26 +1,37 @@
-name: Quine recommended repos for Git Things Done
+name: Quine Recommended Repos for Git Things Done
 branding:
   icon: check-square
   color: green
-description: |
+description: >
   Sends you open-source repos that you might be interested in contributing to,
-  based on your previous GitHub activity
+  based on your previous GitHub activity.
 inputs:
   publish-in:
-    description: "Tells the action where to publish your repo recommendations. Valid: `separate-issue` and `porter-issue`. Default: `porter-issue`"
-    required: false
+    description: >
+      Tells the action where to publish your repo recommendations.
+      Either `porter-issue` (the default) or `separate-issue`.
+    default: porter-issue
   run-cron:
-    description: "A cron schedule expression that tells the action when to publish your recommended repos."
-    required: true
+    description: >
+      A cron schedule expression used by the action to determine if it should run.
+      eg. '* * * * 1' will only run on mondays.
+      Defaults to “always” (ie. `* * * * *`).
+    default: '* * * * *'
   gh-pat:
-    description: "PAT. Used to store Quine API access tokens in your repo's secrets. Scope needed: repo: all and org: read"
+    description: >
+      A GitHub Personal Access Token (PAT) needed by the Quine API.
+      Required scopes: `repo: all` and `org: read`
     required: true
   quine-access-token:
-    description: "Access token used to query Quine's API for you recommended repos."
-    required: false
+    description: >
+      Access token used to query Quine's API for you recommended repos.
+      **Must be set to `${{ secrets.QUINE_ACCESS_TOKEN}}`**
+    required: true
   quine-refresh-token:
-    description: "Refresh token that will be exchanged for a Quine access token after the latter expires."
-    required: false
+    description: >
+      Refresh token that will be exchanged for a Quine access token after the latter expires.
+      **Must be set to `${{ secrets.QUINE_REFRESH_TOKEN}}`**
+    required: true
 runs:
   using: docker
   image: Dockerfile
