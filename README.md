@@ -80,7 +80,7 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      - uses: quine-sh/quine-gtd-action@master
+      - uses: quine-sh/repo-recommendations-for-gtd@main
         id: quineGTD
         with:
           run-cron: "* * * * 1" # You will only get the recommendations on Mondays 
@@ -135,7 +135,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  #FIXME https://github.com/git-things-done/gtd/discussions/10
-      - uses: quine-sh/quine-gtd-action@master
+      - uses: quine-sh/repo-recommendations-for-gtd@main
         id: quineGTD
         with:
           publish-in: "separate-issue"
