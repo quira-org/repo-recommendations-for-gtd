@@ -8,7 +8,7 @@
 1. Go to https://github.com/settings/tokens.
 2. Generate a new token. Name it `QUINE_GH_PAT`. We need the `repo:all` and `read:org` scopes.
 ![Token scopes](readme_assets/token_scopes.png)
-3. Copy it and keep it for the next step. Note: it won't be available after close the tab.
+3. Copy it and keep it for the next step. Note: it won't be available after you close the tab.
 
 **Q:** Why do you need a PAT? Couldn't you just use the default GitHub token?
 
@@ -101,7 +101,6 @@ jobs:
           contents: ${{  needs.git-things-done.outputs.today }}
       - uses: peaceiris/actions-gh-pages@v3
         with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
           personal_token: ${{ secrets.QUINE_GH_PAT }}
           external_repository: ${{ github.actor }}/${{ github.actor }}.github.io
           publish_dir: ./public
@@ -145,7 +144,7 @@ it's a one time thing. To do so:
 1. Manually start your workflow.
 2. Wait for Quine's GTD action to run. You should see a message similar to this:
    ![Authorisation link in console](readme_assets/authorisation_link_console.png)
-3. Click on the link and log in or sign up on our platform or just click on Confirm.
+3. Click on the link to confirm, log in or sign up on our platform.
    ![Device confirmation](readme_assets/device_confirmation.png)
 4. That's it! Come back to your GTD repo issues page and check out our recommended repos.
 
