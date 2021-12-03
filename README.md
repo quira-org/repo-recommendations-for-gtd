@@ -1,6 +1,6 @@
-AI-powered repo recommendations delivered straight to your GTD repo!
+# AI-powered repo recommendations delivered straight to your [GTD](https://github.com/git-things-done) repo!
 
-This GTD Action integrates with [Quine](https://quine.sh)'s API to provide you with tailored recommendations
+This [GTD](https://github.com/git-things-done) Action integrates with [Quine](https://quine.sh)'s API to provide you with tailored recommendations
 of GitHub repos!
 
 ![Separate ticket list view](readme_assets/publish_in_separate_ticket_view.png)
@@ -9,7 +9,7 @@ of GitHub repos!
 
 ## Prerequisites
 - A GitHub Personal Access Token with repo: all and org: read scopes
-- A forked GTD repo correctly set up
+- A forked [GTD](https://github.com/git-things-done) repo correctly set up
 
 ### Generating a PAT:
 1. Go to https://github.com/settings/tokens.
@@ -22,7 +22,7 @@ of GitHub repos!
 **A:** We need read/write access to the repo's secrets in order to store the access tokens to Quine's API. Unfortunately, 
    you can't edit repository secrets using the default GitHub token supplied to Actions.
 
-### Adding your PAT to GTD:
+### Adding your PAT to [GTD](https://github.com/git-things-done):
 1. Go to `https://github.com/${YOUR_USERNAME}/gtd/settings/secrets/actions`.
 2. Add a new secret. Name it `QUINE_GH_PAT` and paste the PAT generated in the previous step.
    ![Token scopes](readme_assets/secrets_page_setup.png)
