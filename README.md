@@ -1,4 +1,11 @@
-# Set up
+AI-powered repo recommendations delivered straight to your GTD repo!
+
+This GTD Action integrates with [Quine](https://quine.sh)'s API to provide you with tailored recommendations
+of GitHub repos!
+
+![Separate ticket list view](readme_assets/publish_in_separate_ticket_view.png)
+
+# Setting things up
 
 ## Prerequisites
 - A GitHub Personal Access Token with repo: all and org: read scopes
