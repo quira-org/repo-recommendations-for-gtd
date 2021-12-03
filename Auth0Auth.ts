@@ -1,14 +1,3 @@
-// see https://auth0.com/docs/authorization/flows/call-your-api-using-the-device-authorization-flow#request-tokens
-// for a step-by-step guide on the auth flow
-/**
- * If first time run or Quine API token (QAt) expired:
- * 1. Get a QAt via Auth0 calls
- * 2. Store the QAt in GitHub Secrets
- * ELSE
- * 3. Fetch the QAt from GH Secrets
- * ENDIF
- * 4. Use QAt to call the Quine API
- */
 import { config } from './config';
 import { pollUntil } from "./utils";
 import { getInput } from "@actions/core";
@@ -19,7 +8,7 @@ interface IAuth0ReqDeviceCodeResponse {
   user_code: string;
   verification_uri: string;
   expires_in: number;
-  interval: number; // polling interval to be used when veryfying if the user is logged in
+  interval: number; // polling interval to be used when verifying if the user is logged in
   verification_uri_complete: string;
 }
 interface IReqDeviceCodeResponse {
@@ -128,10 +117,16 @@ export class Auth0Auth {
   }
 
   public async exchangeRefreshTokenForAccessToken(refreshToken: string): Promise<IAuth0TokensResponse> {
+    const params = new URLSearchParams();
+    params.append('grant_type', 'refresh_token');
+    params.append('client_id', config.auth0ClientId);
+    params.append('refresh_token', refreshToken);
+    const response = await fetch(config.tokenURI, { method: 'POST', body: params });
+    const res = await response.json();
     return {
-      refreshToken: 'test',// res.refresh_token,
-      accessToken: 'test',// res.access_token,
-      expiresIn: '10', // res.expires_in,
+      refreshToken: res.refresh_token,
+      accessToken: res.access_token,
+      expiresIn: res.expires_in,
     };
   }
 
