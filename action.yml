@@ -25,12 +25,12 @@ inputs:
   quine-access-token:
     description: >
       Access token used to query Quine's API for you recommended repos.
-      **Must be set to `${{ secrets.QUINE_ACCESS_TOKEN}}`**
+      **Must be set to `secrets.QUINE_ACCESS_TOKEN`**
     required: true
   quine-refresh-token:
     description: >
       Refresh token that will be exchanged for a Quine access token after the latter expires.
-      **Must be set to `${{ secrets.QUINE_REFRESH_TOKEN}}`**
+      **Must be set to `secrets.QUINE_REFRESH_TOKEN`**
     required: true
 runs:
   using: docker
