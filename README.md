@@ -1,6 +1,6 @@
 # Scout for “Git Things Done”
 
-Daily repo recs for your [GitTD](https://github.com/git-things-done).
+Periodic repo recs for your [GitTD](https://github.com/git-things-done).
 
 * Powered by Quine’s *advanced* AI recommendation engine
 * *Personal* suggestions tailored to *your development style*
@@ -57,6 +57,8 @@ When it runs you’ll see a link:
 ![Device confirmation](readme_assets/device_confirmation.png)
 
 </details>
+
+> **Note!** This action will pause giving you time to click the link.
 
 
 # Configuration
