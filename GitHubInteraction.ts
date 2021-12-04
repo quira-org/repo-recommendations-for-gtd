@@ -75,12 +75,7 @@ export class GitHubInteraction {
   }
 
   public async createTicket(recommendations: IRepoInfo[]) {
-    const body = `
-### Check out these repos recommended by [Quine](${config.quineURLs.feRoot}):
-${recommendations.map(rec => {
-  return '\n- [' + rec.name_with_owner + '](' + config.quineURLs.feRoot +'/' + rec.id + ')' + (rec.description ? " - " + rec.description : "");
-})}
-`;
+    const body = makeBody(recommendations, 1);
     const date = dayjs(new Date()).format('YYYY-MM-DD[, ]ddd') // '25/01/2019'
     await this.octokit.rest.issues.create({
       owner: this.owner,
@@ -97,14 +92,8 @@ ${recommendations.map(rec => {
       issue_number: this.currentDayIssue
     }).then(x => x.data.body);
 
-    body = `
-${body}
-    
-### Check out these repos recommended by [Quine](${config.quineURLs.feRoot}):
-${recommendations.map(rec => {
-  return '\n- [' + rec.name_with_owner + '](' + config.quineURLs.feRoot +'/' + rec.id + ')' + (rec.description ? " - " + rec.description : "");
-})}
-`;
+    body += "\n";
+    body += makeBody(recommendations, 3);
 
     await this.octokit.rest.issues.update({
       owner: this.owner,
@@ -113,4 +102,19 @@ ${recommendations.map(rec => {
       body
     })
   }
+}
+
+function makeBody(recs: IRepoInfo[], h: number): string {
+  const list = recs.map(rec =>
+    `* [${rec.name_with_owner}](${config.quineURLs.feRoot}/${rec.id})\n    ${rec.description ? ` - ${rec.description}` : ''}`
+  ).join("\n");
+
+  const hh = [...Array(h)].map(_=>'#').join("");
+
+  return `
+${hh} Personalized Repo Recs
+${list}
+
+> Made with ♥️ by [Quine](${config.quineURLs.feRoot})
+`
 }
