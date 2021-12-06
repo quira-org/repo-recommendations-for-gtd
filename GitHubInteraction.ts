@@ -106,7 +106,7 @@ export class GitHubInteraction {
 
 function makeBody(recs: IRepoInfo[], h: number): string {
   const list = recs.map(rec =>
-    `* [${rec.name_with_owner}](${config.quineURLs.feRoot}/${rec.id})\n    ${rec.description ? ` - ${rec.description}` : ''}`
+    `* [${rec.name_with_owner}](${config.quineURLs.feRoot}/repo/${rec.id})\n    ${rec.description ? ` - ${rec.description}` : ''}`
   ).join("\n");
 
   const hh = [...Array(h)].map(_=>'#').join("");
