@@ -22,13 +22,13 @@ export class GitHubInteraction {
     const [owner, repo] = slug.split('/');
     this.currentDayIssue = parseInt((getInput('today') || process.env.GTD_TODAY)!);
     if (!owner || !repo) {
-      throw new Error('Cannot interact with GitHub. Missing owner and repo params.');
+      throw new Error('🚨 Cannot interact with GitHub. Missing owner and repo params.');
     }
     this.owner = owner;
     this.repo = repo;
     const PAT = getInput('gh-pat');
     if (!PAT) {
-      throw new Error("Missing Personal Access Token. Make sure you that:\n" +
+      throw new Error("🚨 Missing Personal Access Token. Make sure you that:\n" +
         "- you have a QUINE_GH_PAT secret added to your gtd repo's secrets page. It should contain your PAT with repo: all and org: read scopes.\n" +
         "- you have edited your gtd porter.yml file to supply the secret as an input to this action/job. See README.md for more details.");
     }
@@ -58,7 +58,7 @@ export class GitHubInteraction {
       });
       return;
     }
-    throw new Error('No repo public key id could be found. Possible misuse of this method. Did you forget to run GitHubInteraction.init()?')
+    throw new Error('🚨 No repo public key id could be found. Possible misuse of this method. Did you forget to run GitHubInteraction.init()?')
   }
   public async setQuineRefreshToken(quineRefreshToken: string): Promise<void> {
     if (this.repoPublicKey && this.repoPublicKeyID) {
@@ -71,7 +71,7 @@ export class GitHubInteraction {
       });
       return;
     }
-    throw new Error('No repo public key id could be found. Possible misuse of this method. Did you forget to run GitHubInteraction.init()?')
+    throw new Error('🚨 No repo public key id could be found. Possible misuse of this method. Did you forget to run GitHubInteraction.init()?')
   }
 
   public async createTicket(recommendations: IRepoInfo[]) {
