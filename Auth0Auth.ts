@@ -65,10 +65,6 @@ export class Auth0Auth {
         Authorization: `Bearer ${bearerToken}`,
       }
     });
-    // const r = await response.json();
-    // console.log("ALOOO");
-    // console.log(r);
-    // console.log("ALOOO");
     return response.json() as IAuth0UserInfo;
   }
 
@@ -90,9 +86,8 @@ export class Auth0Auth {
   }
 
    public async requestDeviceActivation(verificationURI: string, userCode: string, prePopulatedCodeURI: string) {
-     console.log("Visit the following link to log in our sign up for a Quine account:");
-     console.log(prePopulatedCodeURI);
-     console.log(`Or go to ${verificationURI} and type in the following code: ${userCode}`);
+     console.log("👉 Visit the following link to log in our sign up for a Quine account:");
+     console.log(`👉 ${prePopulatedCodeURI}`);
   }
 
   public async requestTokens(deviceCode: string, activationLink: string): Promise<IAuth0TokensResponse | null> {
@@ -105,14 +100,14 @@ export class Auth0Auth {
     const response = await fetch(config.tokenURI, { method: 'POST', body: params });
     const res = await response.json();
     if (res.access_token) {
-      console.debug("Authorisation flow complete!");
+      console.debug("✅ Authorisation flow complete!");
       return {
         refreshToken: res.refresh_token,
         accessToken: res.access_token,
         expiresIn: res.expires_in,
       }
     }
-    console.log(`Authorisation flow not completed. Go to ${activationLink}.`);
+    console.log(`👉 Authorisation flow not completed. Go to ${activationLink}.`);
     return null;
   }
 
@@ -141,9 +136,9 @@ export class Auth0Auth {
       if (res !== null) {
         return res;
       }
-      throw new Error('An error occurred when asking for auth token. Token received is null. Did you authenticate this using code displayed earlier?');
+      throw new Error('🚨 An error occurred when asking for auth token. Token received is null. Did you authenticate this using code displayed earlier?');
     }
-    throw new Error('An error occurred when asking for auth token. No polling interval set. Did you authenticate this using code displayed earlier?');
+    throw new Error('🚨 An error occurred when asking for auth token. No polling interval set. Did you authenticate this using code displayed earlier?');
   }
 }
 

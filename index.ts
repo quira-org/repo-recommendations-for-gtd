@@ -24,14 +24,14 @@ async function action(publishIn?: string){
       await auth.gitHubInteraction.updateTicket(repoDetails);
       break;
     case "separate-issue":
-      console.log("Publishing as separate issueissue.");
+      console.log("Publishing as separate issue.");
       await auth.gitHubInteraction.createTicket(repoDetails);
       break;
     default:
-      console.log("(No 'publish-in' param supplied. Defaulting to porter issue.");
+      console.log("⚠️ No 'publish-in' param supplied. Defaulting to porter issue.");
       await auth.gitHubInteraction.updateTicket(repoDetails);
   }
-  console.log('Posted in GitHub issue.');
+  console.log('✅ Posted in GitHub issue.');
 }
 
 function getComparableDateParams(dateObj: Date): { day: number, month: number, year: number } {
@@ -58,7 +58,7 @@ async function main () {
       await action(publishIn);
       return;
     }
-      console.log(`Current date ${Date.now()} doesn't match input cron "${runCron}". Skipping execution...`);
+      console.log(`🗓 Current date ${Date.now()} doesn't match input cron "${runCron}". Skipping execution...`);
       return;
   }
   await action(publishIn);
