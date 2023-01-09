@@ -17,7 +17,7 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "cron-parser": "^4.2.0",
+    "cron-parser": "^4.7.0",
     "dayjs": "^1.10.2",
     "node-fetch": "^2.6.1",
     "ts-node": "^10.4.0",
